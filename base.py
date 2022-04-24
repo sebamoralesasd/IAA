@@ -155,4 +155,6 @@ class GeneradorDFEspiral:
         puntos[i].append(0) 
       else: 
         puntos[i].append(1)
-    return puntos
+
+    colNames = [0, 1, "Clase"] 
+    return pd.DataFrame(puntos, columns=colNames)
