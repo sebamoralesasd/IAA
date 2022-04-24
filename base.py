@@ -46,14 +46,14 @@ class GeneradorDFDiagonal:
   def generar_centro_a(self, val):
     return np.repeat(val, self.d)
 
-  def generar_clase_a(self):
+  def generar_clase(self):
     centro1 = self.generar_centro_a(1)
     centro2 = self.generar_centro_a(-1)
     # desviación estándar igual a C * SQRT(d)
     generador_df = GeneradorDF(std=self.C*sqrt(self.d), n=self.n, d=self.d, centro1=centro1, centro2=centro2)
     return generador_df.generar_clases()
 
-class GeneradorDFVertical:
+class GeneradorDFParalelo:
   def __init__(self, C, d, n) -> None:
       self.C = C
       self.d = d
@@ -62,7 +62,7 @@ class GeneradorDFVertical:
   def generar_centro_b(self, val):
     return np.append([val], np.repeat(0, self.d-1))
 
-  def generar_clase_b(self):
+  def generar_clase(self):
     centro1b = self.generar_centro_b(1)
     centro2b = self.generar_centro_b(-1)
     # desviación estandar es igual a C independientemente de d
