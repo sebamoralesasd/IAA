@@ -23,7 +23,7 @@ class GeneradorDF:
   def generar_clases(self):
     cov = self.std ** 2
     mat_cov = np.diag(self.d * [cov])
-    size = 2 * self.n
+    size = self.n + 1
 
     clase1 = self.generar_puntos(self.centro1, mat_cov, size // 2)
     clase1_contag = self.taggear(clase1, 0)
@@ -78,7 +78,7 @@ class GraficadorDF:
       self.df = df
 
   # Fuente: https://stackoverflow.com/a/63539077
-  def graph_puntos(self):
+  def graph_puntos(self, titulo = ''):
     # Separo los puntos por clase
     x0, y0 = self.df[0][self.df.Clase == 0], self.df[1][self.df.Clase == 0]
     x1, y1 = self.df[0][self.df.Clase == 1], self.df[1][self.df.Clase == 1]
@@ -114,6 +114,8 @@ class GraficadorDF:
     ax.grid(which='both', color='grey', linewidth=1, linestyle='-', alpha=0.2)
     ax.legend()
 
+    if titulo != '':
+      plt.title(titulo, size=14, pad=25)
     plt.show()
 
 
