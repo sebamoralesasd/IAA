@@ -6,14 +6,14 @@ from sklearn import tree
 
 class Arbol:
   def entrenar(self, df):
-    X, y = df[[0,1]], df['Clase']
+    X, y = df.iloc[:, :-1], df['Clase']
     clf = DecisionTreeClassifier(criterion="entropy",min_impurity_decrease=0.005,random_state=0,min_samples_leaf=5)
     clf.fit(X, y)
 
     return clf
 
   def predecir(self, df_test, clf):
-    X = df_test[[0,1]]
+    X = df_test.iloc[:, :-1]
     prediccion = clf.predict(X)
     df = df_test.copy(deep = True)
     df['Clase'] = prediccion
