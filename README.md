@@ -7,5 +7,6 @@ Repositorio de la materia Introducción al Aprendizaje Automatizado AKA Machine 
 
 ## TPs
  - [x] 0 - Generación de datos y gráficos
- - [ ] 1 - Árboles de decisión 
+ - [x] 1 - Árboles de decisión 
  - [ ] 2 - ANN (Artificial Neural Networks - Redes neuronales artificiales) 
+ - [ ] 3 - Redes bayesianas
