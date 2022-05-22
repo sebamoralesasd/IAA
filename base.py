@@ -160,3 +160,12 @@ class GeneradorDFEspiral:
 
     colNames = [0, 1, "Clase"] 
     return pd.DataFrame(puntos, columns=colNames)
+
+
+class GeneradorDFCSV:
+  def __init__(self, name) -> None:
+      self.df_data = self.read_csv(name, "data")
+      self.df_test = self.read_csv(name, "test")
+  
+  def read_csv(self, name, df_type):
+    return pd.read_csv(f"./datasets/{name}.{df_type}", names=[0, 1, "Clase"])
