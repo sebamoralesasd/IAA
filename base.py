@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from math import *
 
+from requests import head
+
 class GeneradorDF:
   def __init__(self, std, d, n, centro1, centro2) -> None:
       self.std = std
@@ -163,9 +165,17 @@ class GeneradorDFEspiral:
 
 
 class GeneradorDFCSV:
-  def __init__(self, name) -> None:
-      self.df_data = self.read_csv(name, "data")
-      self.df_test = self.read_csv(name, "test")
+  def __init__(self, filename, names, custom=False, delim_whitespace=False, skipinitialspace=False, header=None) -> None:
+    if custom:
+      self.df_data = self.read_csv_custom(filename, "data", names, delim_whitespace, skipinitialspace, header)
+      self.df_test = self.read_csv_custom(filename, "test", names, delim_whitespace, skipinitialspace, header)
+    else:
+      self.df_data = self.read_csv(filename, "data")
+      self.df_test = self.read_csv(filename, "test")
   
   def read_csv(self, name, df_type):
     return pd.read_csv(f"./datasets/{name}.{df_type}", names=[0, 1, "Clase"])
+
+  def read_csv_custom(self, filename, df_type, names, delim_whitespace, skipinitialspace, header):
+    return pd.read_csv(f"./datasets/{filename}.{df_type}", names=names, 
+    delim_whitespace=delim_whitespace, skipinitialspace=skipinitialspace, header=header)
