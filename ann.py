@@ -33,6 +33,14 @@ class MLP:
   def clasif(self):
     return self._clasif
 
+class MLPGamma:
+  def __init__(self, gamma, epocas_por_entrenamiento=25, eta=0.01, alfa=0.9, N2=60) -> None:
+    self._regr = MLPRegressor(hidden_layer_sizes=(N2,), activation='logistic', solver='sgd', alpha=gamma, batch_size=1, learning_rate='constant', learning_rate_init=eta,momentum=alfa,nesterovs_momentum=False,tol=0.0,warm_start=True,max_iter=epocas_por_entrenamiento)
+
+  @property
+  def regr(self):
+    return self._regr
+
 
 def medir_error(df: pd.DataFrame, df_entrenado: pd.DataFrame, red):
   if is_classifier(red):

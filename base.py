@@ -165,7 +165,7 @@ class GeneradorDFEspiral:
 
 
 class GeneradorDFCSV:
-  def __init__(self, filename, names, custom=False, delim_whitespace=False, skipinitialspace=False, header=None) -> None:
+  def __init__(self, filename, names=None, custom=False, delim_whitespace=False, skipinitialspace=False, header=None) -> None:
     if custom:
       self.df_data = self.read_csv_custom(filename, "data", names, delim_whitespace, skipinitialspace, header)
       self.df_test = self.read_csv_custom(filename, "test", names, delim_whitespace, skipinitialspace, header)
