@@ -83,9 +83,9 @@ def entrenar_red(red, evaluaciones, X_train, y_train, X_val, y_val, X_test, y_te
 
     if e == 0 or current_error_val < best_error_val:
       best_error_val = current_error_val
-      best_red = deepcopy(red)
+      #best_red = deepcopy(red)
 
-  return best_red, error_train_data, error_val_data, error_test_data
+  return test_entrenado, error_train_data, error_val_data, error_test_data
 
 # función que grafica curvas de error y las predicciones
 # epocas es la cantidad de veces que entreno la red y mido los errores

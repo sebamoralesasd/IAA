@@ -85,13 +85,26 @@ class GraficadorDF:
     x0, y0 = self.df[0][self.df.Clase == 0], self.df[1][self.df.Clase == 0]
     x1, y1 = self.df[0][self.df.Clase == 1], self.df[1][self.df.Clase == 1]
 
+    #print(x0, y0)
     # Calculo los máximos y mínimos para tener límites en x e y del gráfico simétricos
-    xmax, xmin = max(max(x0), max(x1)), min(min(x0), min(x1))
-    ymax, ymin = max(max(y0), max(y1)), min(min(y0), min(y1))
+    # xmax, xmin = max(max(x0, default=0), max(x1, default=0)), min(min(x0, default=0), min(x1, default=0))
+    # ymax, ymin = max(max(y0, default=0), max(y1, default=0)), min(min(y0, default=0), min(y1, default=0))
 
-    xmax = np.ceil(max(xmax, ymax))
-    ymax = xmax
-    xmin, ymin = xmax * -1, ymax * -1
+    # xmax = np.ceil(max(xmax, ymax))
+    # ymax = xmax
+    # xmin, ymin = xmax * -1, ymax * -1
+
+    xmax, xmin = max(x0, default=0), min(x0, default=0)
+    xmax, xmin = max(xmax, max(x1, default=0)), min(xmin, min(x1, default=0))
+
+    xmax = np.ceil(max(abs(xmax), abs(xmin)))
+    xmin = -xmax
+
+    ymax, ymin = max(y0, default=0), min(y0, default=0)
+    ymax, ymin = max(ymax, max(y1, default=0)), min(ymin, min(y1, default=0))
+
+    ymax = np.ceil(max(abs(ymax), abs(ymin)))
+    ymin = -ymax
 
     # Grafico
     _, ax = plt.subplots(figsize=(10, 10))
